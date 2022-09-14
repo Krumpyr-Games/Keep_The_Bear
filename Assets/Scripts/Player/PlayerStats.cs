@@ -18,7 +18,7 @@ public class PlayerStats : MonoBehaviour
 
 
 
-    private void Start()
+    private void Awake()
     {
         Money = PlayerPrefs.GetInt("Money");
         if (Instance != null) { Debug.LogError("One BuildManager at the same time"); return; }

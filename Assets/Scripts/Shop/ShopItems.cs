@@ -1,8 +1,8 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro; 
 
-public class ShopItem : IShopItem
+public class ShopItems : IShopItem
 {
     #region Values
     [Header("Item Info")]
@@ -16,7 +16,7 @@ public class ShopItem : IShopItem
     private int _lvlRequired;
 
     [SerializeField]
-    private GameObject _targetObject;
+    private GameObject[] _targetObjects;
 
     [SerializeField]
     private Sprite _itemSprite;
@@ -49,7 +49,10 @@ public class ShopItem : IShopItem
 
             Debug.Log("BUYED");
 
-            Render();
+            foreach (var item in _targetObjects)
+            {
+                item.SetActive(true);
+            }
         }
     }
 
@@ -59,11 +62,17 @@ public class ShopItem : IShopItem
         {
             if (CheckBuy() == 1)
             {
-                _targetObject.SetActive(true);
+                foreach (var item in _targetObjects)
+                {
+                    item.SetActive(true);
+                }
             }
             else
             {
-                _targetObject.SetActive(false);
+                foreach (var item in _targetObjects)
+                {
+                    item.SetActive(false);
+                }
             }
 
         }
