@@ -1,9 +1,16 @@
 using System.Collections;
 using UnityEngine;
+using static TrashEvent;
+using static Visitor;
 
 [RequireComponent(typeof(Order))]
 public class Visitor : MonoBehaviour
 {
+    public delegate void AfterDead(Transform transform);
+    public static event AfterDead AfterDea;
+
+
+
     public VisitorsPosition currentSpawnPoint;
 
     public bool isSomeOneServeringVisitor { get; private set; }
@@ -16,7 +23,8 @@ public class Visitor : MonoBehaviour
 
     private Order _order;
     private bool _orderGiven = false;
-    
+
+
     private BoxCollider2D _collider;
 
     private void Start()
@@ -71,6 +79,7 @@ public class Visitor : MonoBehaviour
     private void OutOfTime()
     {
         currentSpawnPoint.IsBusyFalse();
+        AfterDea(gameObject.transform);   
         Destroy(gameObject);
     }
 

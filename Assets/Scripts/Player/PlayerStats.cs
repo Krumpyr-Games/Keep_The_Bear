@@ -5,7 +5,7 @@ public class PlayerStats : MonoBehaviour
 {  
     public int Money { get;private set; }
 
-     
+    [SerializeField] private int Debaf; 
     public static PlayerStats Instance;
 
     public int Level { get; private set; }
@@ -16,6 +16,7 @@ public class PlayerStats : MonoBehaviour
     [SerializeField]
     private float nextLvlExpCoefficient;
 
+    private VisitorsPosition visitorsPosition = new VisitorsPosition();
 
 
     private void Awake()
@@ -62,9 +63,9 @@ public class PlayerStats : MonoBehaviour
     public void AddExp(int exp)
     {
         if (exp > 0)
-        {
-            _Exp += exp;
-
+        {          
+           _Exp += exp;
+    
             if(_Exp >= _maxExp)
             {
                 Level += 1;

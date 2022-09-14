@@ -42,7 +42,7 @@ public class VisitorSpawner : MonoBehaviour
 
         for (int i = 0; i < _points.Length; i++)
         {
-            if (!_points[i].IsBusy && _points[i].isActiveAndEnabled)
+            if (!_points[i].IsBusy && _points[i].isActiveAndEnabled )
             {
                 positions.Add(_points[i]);
             }
@@ -63,7 +63,7 @@ public class VisitorSpawner : MonoBehaviour
 
         for (int i = 0; i < _points.Length; i++)
         {
-            if (!_points[i].IsBusy && isActiveAndEnabled)
+            if (!_points[i].IsBusy && isActiveAndEnabled )
             {
                 return true;
             }
