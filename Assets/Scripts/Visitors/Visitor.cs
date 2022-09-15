@@ -19,9 +19,13 @@ public class Visitor : MonoBehaviour
     
     private BoxCollider2D _collider;
 
+    private VisitorSpawner _spawner;
+
     private void Start()
     {
         isSomeOneServeringVisitor = false;
+
+        _spawner = FindObjectOfType<VisitorSpawner>().GetComponent<VisitorSpawner>();
 
         _order = GetComponent<Order>();
         StartCoroutine(Life());
@@ -70,7 +74,22 @@ public class Visitor : MonoBehaviour
 
     private void OutOfTime()
     {
-        currentSpawnPoint.IsBusyFalse();
+        if(Random.Range(0 , 10) >= 1 && _orderGiven)
+        {
+            currentSpawnPoint.IsBusyTrue();
+            var trash = Instantiate(_spawner.TrashPrefab, transform.position, Quaternion.identity);
+            trash.GetComponent<Trash>().SetVisitor(currentSpawnPoint);
+            trash.GetComponent<Trash>().SetVisitorPoint(this.GetComponent<Visitor>());
+            LeaveVisitor();
+        }
+        else
+        {
+            currentSpawnPoint.IsBusyFalse();
+            LeaveVisitor();
+        }
+    }
+    public void LeaveVisitor()
+    {       
         Destroy(gameObject);
     }
 

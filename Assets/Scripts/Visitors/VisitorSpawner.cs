@@ -11,6 +11,9 @@ public class VisitorSpawner : MonoBehaviour
     [SerializeField]
     private float _spawnRate;
 
+
+    public GameObject TrashPrefab;
+
     private void Start()
     {
         StartCoroutine(SpawnVisitors());

@@ -716,7 +716,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7072743675489391, guid: 422ecf5d0da6eef49818b82915640d07, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4048791737075977399, guid: 422ecf5d0da6eef49818b82915640d07, type: 3}
       propertyPath: Cost
@@ -1853,7 +1853,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7072743675489391, guid: 422ecf5d0da6eef49818b82915640d07, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4048791737075977399, guid: 422ecf5d0da6eef49818b82915640d07, type: 3}
       propertyPath: Cost
@@ -3205,7 +3205,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7072743675489391, guid: 422ecf5d0da6eef49818b82915640d07, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4048791737075977399, guid: 422ecf5d0da6eef49818b82915640d07, type: 3}
       propertyPath: Cost
@@ -3844,7 +3844,8 @@ MonoBehaviour:
   - {fileID: 420603331}
   VisitorsSkinArr:
   - {fileID: 6327326345008687925, guid: 403e9f2de8548f44e90b24fdc3991956, type: 3}
-  _spawnRate: 1
+  _spawnRate: 5
+  TrashPrefab: {fileID: 3779847280033673647, guid: 3b9d5419457ae2a4d9cf3c94e1a38001, type: 3}
 --- !u!1 &1767782009 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7072743675489391, guid: 422ecf5d0da6eef49818b82915640d07, type: 3}
@@ -3907,7 +3908,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7072743675489391, guid: 422ecf5d0da6eef49818b82915640d07, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4048791737075977399, guid: 422ecf5d0da6eef49818b82915640d07, type: 3}
       propertyPath: Cost
