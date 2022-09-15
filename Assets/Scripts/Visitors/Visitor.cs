@@ -1,16 +1,9 @@
 using System.Collections;
 using UnityEngine;
-using static TrashEvent;
-using static Visitor;
 
 [RequireComponent(typeof(Order))]
 public class Visitor : MonoBehaviour
 {
-    public delegate void AfterDead(Transform transform);
-    public static event AfterDead AfterDea;
-
-
-
     public VisitorsPosition currentSpawnPoint;
 
     public bool isSomeOneServeringVisitor { get; private set; }
@@ -23,13 +16,16 @@ public class Visitor : MonoBehaviour
 
     private Order _order;
     private bool _orderGiven = false;
-
-
+    
     private BoxCollider2D _collider;
+
+    private VisitorSpawner _spawner;
 
     private void Start()
     {
         isSomeOneServeringVisitor = false;
+
+        _spawner = FindObjectOfType<VisitorSpawner>().GetComponent<VisitorSpawner>();
 
         _order = GetComponent<Order>();
         StartCoroutine(Life());
@@ -78,8 +74,22 @@ public class Visitor : MonoBehaviour
 
     private void OutOfTime()
     {
-        currentSpawnPoint.IsBusyFalse();
-        AfterDea(gameObject.transform);   
+        if(Random.Range(0 , 10) >= 1 && _orderGiven)
+        {
+            currentSpawnPoint.IsBusyTrue();
+            var trash = Instantiate(_spawner.TrashPrefab, transform.position, Quaternion.identity);
+            trash.GetComponent<Trash>().SetVisitor(currentSpawnPoint);
+            trash.GetComponent<Trash>().SetVisitorPoint(this.GetComponent<Visitor>());
+            LeaveVisitor();
+        }
+        else
+        {
+            currentSpawnPoint.IsBusyFalse();
+            LeaveVisitor();
+        }
+    }
+    public void LeaveVisitor()
+    {       
         Destroy(gameObject);
     }
 
