@@ -143,5 +143,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentSpawnPoint: {fileID: 0}
-  _waitingTime: 2
+  _waitingTime: 5
   _timeBeforeDie: 1
+  _maxRateTreashEvent: 30
+  _rateTreashEvent: 23
+  _maxRateMoreVisitorEvent: 10
+  _rateMoreVisitorEvent: 1

@@ -19,7 +19,7 @@ public class Trash : MonoBehaviour
     {
         _visitorsPosition.IsBusyFalse();
         Destroy(gameObject);
-        _visitor.LeaveVisitor();
+       // _visitor.LeaveVisitor();
     }
     public void SetVisitor(VisitorsPosition value)
     {

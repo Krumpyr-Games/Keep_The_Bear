@@ -20,16 +20,29 @@ public class Visitor : MonoBehaviour
     private BoxCollider2D _collider;
 
     private VisitorSpawner _spawner;
+    private MoreVisitors _moreVisitors;
 
+    [Header("Настройки грязного ивента")]
+    [SerializeField] private int _maxRateTreashEvent;
+    [SerializeField] private int _rateTreashEvent;
+
+
+    [Header("Настройки праздник ивент")]
+    [SerializeField] private int _maxRateMoreVisitorEvent;
+    [SerializeField] private int _rateMoreVisitorEvent;
+
+    private MoreVisitors moreVisitors;
     private void Start()
     {
         isSomeOneServeringVisitor = false;
 
+        _moreVisitors = FindObjectOfType<MoreVisitors>().GetComponent<MoreVisitors>();
         _spawner = FindObjectOfType<VisitorSpawner>().GetComponent<VisitorSpawner>();
 
         _order = GetComponent<Order>();
         StartCoroutine(Life());
-        _collider = GetComponent<BoxCollider2D>();    
+        _collider = GetComponent<BoxCollider2D>();
+        
     }
 
     public void TakeOrder()
@@ -74,19 +87,30 @@ public class Visitor : MonoBehaviour
 
     private void OutOfTime()
     {
-        if(Random.Range(0 , 10) >= 1 && _orderGiven)
+
+        StartMoreVisitorEvent();
+        StartTreshEvents();
+        LeaveVisitor();
+    }
+
+
+    public void StartTreshEvents() 
+    {
+        if (Random.Range(0, _maxRateTreashEvent) >= _rateTreashEvent && _orderGiven)
         {
+            Debug.Log("Start event trash events in visitor script");
             currentSpawnPoint.IsBusyTrue();
             var trash = Instantiate(_spawner.TrashPrefab, transform.position, Quaternion.identity);
             trash.GetComponent<Trash>().SetVisitor(currentSpawnPoint);
-            trash.GetComponent<Trash>().SetVisitorPoint(this.GetComponent<Visitor>());
-            LeaveVisitor();
-        }
-        else
+            trash.GetComponent<Trash>().SetVisitorPoint(this.GetComponent<Visitor>());        
+        }       
+    }
+    public void StartMoreVisitorEvent()
+    {
+        if (Random.Range(0, _maxRateMoreVisitorEvent) >= _rateMoreVisitorEvent && _orderGiven)
         {
-            currentSpawnPoint.IsBusyFalse();
-            LeaveVisitor();
-        }
+            _moreVisitors.StartEventMoreVositor();
+        }       
     }
     public void LeaveVisitor()
     {       

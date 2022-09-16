@@ -9,7 +9,7 @@ public class VisitorSpawner : MonoBehaviour
     [SerializeField] 
     GameObject[] VisitorsSkinArr = { };
     [SerializeField]
-    private float _spawnRate;
+     public float _spawnRate;
 
 
     public GameObject TrashPrefab;
