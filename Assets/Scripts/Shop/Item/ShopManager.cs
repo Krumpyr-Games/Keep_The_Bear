@@ -1,19 +1,18 @@
-using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
+ï»¿using UnityEngine;
 
 public class ShopManager : MonoBehaviour
 {
-    public ItemObject[] items;
-    public void BuyItem(ItemObject target) // Ïîêóïàåì Ïðåäìåò;
+    [SerializeField]
+    private IItem[] _items;
+
+    private void Start()
     {
-        if(target.Cost > PlayerStats.Instance.Money) { return; }
-
-        if (target.isBuyed == 0)
+        foreach (var item in _items)
         {
-            PlayerStats.Instance.RemoveMoney(target.Cost);
-
-            target.Buy();
-        }       
+            if(item.isBuyed == 1)
+            {
+                item.Render();
+            }
+        }
     }
 }
