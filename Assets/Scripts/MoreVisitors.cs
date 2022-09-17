@@ -28,10 +28,4 @@ public class MoreVisitors : MonoBehaviour
         yield return new WaitForSeconds(_vaitingTime);
         visitorSpawner._spawnRate = StaticRate;
     }
-
-    public void Test()
-    {
-       
-    }
-
 }
