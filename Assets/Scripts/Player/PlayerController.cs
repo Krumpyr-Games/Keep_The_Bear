@@ -18,8 +18,13 @@ public class PlayerController : MonoBehaviour
 
     Visitor _visitor;
 
+    private int _FlipFlag;
+
+    private SpriteRenderer _spriteRenderer;
+
     void Start()
     {
+        _spriteRenderer = GetComponent<SpriteRenderer>();
         startPosion = transform.position;
     }
 
@@ -35,11 +40,17 @@ public class PlayerController : MonoBehaviour
             StartCoroutine(ServeVisitor());
 
         }
-
-
-
     }
 
+    public void SetFlip()
+    {
+      _spriteRenderer.flipX = true;  
+    }
+
+    public void ClearFlip()
+    {
+            _spriteRenderer.flipX = false;
+    }
 
     IEnumerator ServeVisitor()
     {
@@ -49,13 +60,24 @@ public class PlayerController : MonoBehaviour
 
         yield return new WaitForSeconds(_toVisitorDelay);
 
+        if (NewPosion.x <= 0) 
+        {
+            SetFlip();
+        }
+
         transform.position = NewPosion;
 
         yield return new WaitForSeconds(_toStartPosDelay);
 
+        ClearFlip();
+
         transform.position = startPosion;
 
         yield return new WaitForSeconds(_toVisitorDelay2);
+        if (NewPosion.x <= 0)
+        {
+            SetFlip();
+        }
 
         transform.position = NewPosion;
 
@@ -69,6 +91,7 @@ public class PlayerController : MonoBehaviour
 
         yield return new WaitForSeconds(_toStartPosDelay);
 
+        ClearFlip();
         transform.position = startPosion;
         //_visitor = null;
 

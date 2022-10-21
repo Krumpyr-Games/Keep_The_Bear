@@ -28,8 +28,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5496631963283267331}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.89, y: -1.27, z: 2.35083}
-  m_LocalScale: {x: 2.216, y: 2.4303, z: 1}
+  m_LocalPosition: {x: -4.1602, y: -0.9573, z: 2.35083}
+  m_LocalScale: {x: 0.95968306, y: 1.0998163, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}

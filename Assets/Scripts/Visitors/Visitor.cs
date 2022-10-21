@@ -21,6 +21,7 @@ public class Visitor : MonoBehaviour
 
     private VisitorSpawner _spawner;
     private MoreVisitors _moreVisitors;
+    
 
     [Header("Настройки грязного ивента")]
     [SerializeField] private int _maxRateTreashEvent;
@@ -38,6 +39,7 @@ public class Visitor : MonoBehaviour
 
         _moreVisitors = FindObjectOfType<MoreVisitors>().GetComponent<MoreVisitors>();
         _spawner = FindObjectOfType<VisitorSpawner>().GetComponent<VisitorSpawner>();
+        //_spawner = FindObjectOfType<VisitorSpawner>().GetComponent<VisitorSpawner>();
 
         _order = GetComponent<Order>();
         StartCoroutine(Life());
@@ -98,7 +100,7 @@ public class Visitor : MonoBehaviour
     {
         if (Random.Range(0, _maxRateTreashEvent) >= _rateTreashEvent && _orderGiven)
         {
-            Debug.Log("Start event trash events in visitor script");
+            
             currentSpawnPoint.IsBusyTrue();
             var trash = Instantiate(_spawner.TrashPrefab, transform.position, Quaternion.identity);
             trash.GetComponent<Trash>().SetVisitor(currentSpawnPoint);
@@ -115,6 +117,7 @@ public class Visitor : MonoBehaviour
     public void LeaveVisitor()
     {       
         Destroy(gameObject);
+        currentSpawnPoint.IsBusyFalse();
     }
 
 }
